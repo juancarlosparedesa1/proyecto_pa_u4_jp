@@ -1,6 +1,8 @@
 package com.example.demo.funcional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,20 @@ public class MainInterfacesFuncionales {
 		IPersonaSupplier<Persona> supplier5 = new PersonaSupplier2Impl();
 		LOG.info("Supplier Lambda"+supplier5.getNombre());
 		
+		
+		//JAVA
+		
+		LOG.info("JAVA supplier");
+		//me permite generar un string
+		Stream<String> lista=Stream.generate((() ->"Juan")).limit(10);
+		//imprimierle con otro tipo de funcion lambda
+		lista.forEach(cadena-> LOG.info(cadena));
+		
+		
+		
+		
+		
+		
 		// 2.CONSUMER
 			LOG.info("2.CONSUMER");
 			
@@ -64,6 +80,17 @@ public class MainInterfacesFuncionales {
 		};
 		consumer3.accept(Integer.valueOf(5), Integer.valueOf(10));
 		
+		
+		//JAVA
+		LOG.info("JAVA Consumer");
+		
+		List<Integer> listaNumeros=Arrays.asList(1,2,3,4,5,56,70);
+		listaNumeros.forEach(numero ->LOG.info("Valor: "+numero));
+		
+		for(Integer val:listaNumeros) {
+			LOG.info("Valor:"+val);
+		}
+		
 		//3.PREDICATE
 		LOG.info("3.PREDICATE");
 		//Lambdas-implememntaciones
@@ -80,6 +107,25 @@ public class MainInterfacesFuncionales {
 			}
 		};
 		LOG.info("Predicate:"+predicate2.evaluar(Integer.valueOf(11)));
+		
+		
+		
+		
+		
+		
+		
+		//JAVA
+		LOG.info("JAVA Predicate");{
+	
+		listaNumeros.stream().filter(numero->numero>3);
+		
+	
+		
+		
+		
+		
+		
+		
 		
 		//4.FUNCTION
 		LOG.info("4.FUNCTION");
@@ -103,6 +149,24 @@ public class MainInterfacesFuncionales {
 		LOG.info("Ciudadano convertido:"+ciudadanoConvertido);
 		
 		
+		
+		//JAVA
+		LOG.info("JAVA Function");
+		Stream<String> listaCambiada =listaNumeros.stream().map(numeroLista->{
+			Integer valorFinal=numeroLista+1;
+			String cadena="num: "+valorFinal.toString();
+			return cadena;
+		});
+		listaCambiada.forEach(cadena->LOG.info(cadena));
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// 5.UNARYOPERATOR
 		LOG.info("5.UNARYOPERATOR");
 		//lambdas
@@ -113,9 +177,20 @@ public class MainInterfacesFuncionales {
 		LOG.info("UnaryOperator: "+unaryOperator.aplicar("Daniel"));
 		
 		
+		//java
+		
+		
+		
+		
+		
 	}
-	
-
-	
-
+	}
 }
+	
+
+	
+
+
+		
+			
+		

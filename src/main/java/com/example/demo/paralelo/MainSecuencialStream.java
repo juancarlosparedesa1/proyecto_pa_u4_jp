@@ -9,32 +9,27 @@ public class MainSecuencialStream {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		List<Integer> idEstudiantes = new ArrayList();
-		for (int i = 1; i <= 10; i++) {
+		List<Integer> idEstudiantes = new ArrayList<>();
+		for(int i=1; i<=10;i++) {
 			idEstudiantes.add(i);
 		}
-		idEstudiantes.forEach(numero -> System.out.println("Estudiante:" + numero));
-		//procesar cada estudinate
-		long tiempoInicial=System.currentTimeMillis();
-		//convertir un dato de la lista a stream
-		//List<String> listaFinal= idEstudiantes.stream().map(id->procesarIdEstudiante(id)).collect(Collectors.toList());
-		List<String> listaFinal = idEstudiantes.stream().map(id -> procesarIdEstudiante(id)).collect(Collectors.toList());
-		long tiempoFinal=System.currentTimeMillis();
-		long tiempoTranscurrido =(tiempoFinal-tiempoInicial)/1000;
-		listaFinal.forEach(cadena->System.out.println(cadena));
-		System.out.println("Tiempo transcurrido en segundos:"+tiempoTranscurrido);
-		
+		 idEstudiantes.forEach(numero -> System.out.println("Estudiante: "+numero));
+		 //Procesar estudiantes
+		 long tiempoInicial= System.currentTimeMillis();
+		 List<String>listafinal = idEstudiantes.stream().map(id -> procesarIdEstudiante(id)).collect(Collectors.toList());		 
+		 long tiempoFinal= System.currentTimeMillis();
+		 long tiempoTranscurrido= (tiempoFinal-tiempoInicial)/1000;
+		 listafinal.forEach(cadena -> System.out.println(cadena));
+		 System.out.println("Tiempo transcurrido: "+tiempoTranscurrido);
 	}
-
+	
 	public static String procesarIdEstudiante(Integer idEstudiante) {
-
-		String idConvertido = "E" + idEstudiante.toString();
-		//insertar a la bd simular
-		System.out.println("Insertando estudiante: "+idConvertido+"hilo: "+Thread.currentThread().getName());
+		//Convertir a string
+		String idConvertido="E"+idEstudiante.toString();
+		//Se inserta en la base
+		System.out.println("Insertando estudiante: "+idConvertido+" hilo: "+Thread.currentThread().getName());
 		//1 segundo
 		try {
-			//1 segundo duerma 1 segundo
 			TimeUnit.SECONDS.sleep(1);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -42,4 +37,5 @@ public class MainSecuencialStream {
 		}
 		return idConvertido;
 	}
+
 }
